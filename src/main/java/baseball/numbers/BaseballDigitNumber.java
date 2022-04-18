@@ -1,9 +1,11 @@
 package baseball.numbers;
 
+import baseball.ballcount.BallCount;
+import baseball.ballcount.BallCountComparable;
 import baseball.util.NullUtils;
 import java.util.Objects;
 
-public class BaseballDigitNumber {
+public class BaseballDigitNumber implements BallCountComparable<BaseballDigitNumber> {
 
     private final Integer number;
     private final Integer rightIndex;
@@ -24,6 +26,19 @@ public class BaseballDigitNumber {
 
     public Integer number() {
         return this.number;
+    }
+
+    @Override
+    public BallCount compare(BaseballDigitNumber digitNumber) {
+        if (digitNumber.number.equals(this.number)
+                && digitNumber.rightIndex.equals(this.rightIndex)) {
+            return BallCount.STRIKE;
+        }
+
+        if (digitNumber.number.equals(this.number)) {
+            return BallCount.BALL;
+        }
+        return BallCount.NOTHING;
     }
 
     protected void validDigitNumber() {

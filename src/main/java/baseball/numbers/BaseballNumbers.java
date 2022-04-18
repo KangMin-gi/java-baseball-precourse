@@ -1,9 +1,12 @@
 package baseball.numbers;
 
+import baseball.ballcount.BallCount;
+import baseball.ballcount.BallCountInspector;
 import baseball.util.NullUtils;
+import java.util.ArrayList;
 import java.util.List;
 
-public class BaseballNumbers {
+public class BaseballNumbers implements BallCountInspector<BaseballDigitNumber> {
 
     private final BaseballDigitNumbersConverter baseballDigitNumbersConverter;
     private final Integer originBaseballNumbers;
@@ -34,4 +37,14 @@ public class BaseballNumbers {
     public int intValue() {
         return this.originBaseballNumbers;
     }
+
+    @Override
+    public List<BallCount> inspectBallCounts(BaseballDigitNumber element) {
+        List<BallCount> list = new ArrayList<>();
+        for (BaseballDigitNumber baseballDigitNumber : this.baseballDigitNumbers()) {
+            list.add(baseballDigitNumber.compare(element));
+        }
+        return list;
+    }
+
 }
