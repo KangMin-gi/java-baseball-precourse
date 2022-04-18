@@ -32,4 +32,18 @@ public class BaseballGameProperty {
         return allowDigitNumberMax;
     }
 
+    public Integer minNumberRange() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(1);
+        for (int i = 1; i < numberOfDigit; ++i) {
+            builder.append(0);
+        }
+        String num = builder.toString();
+        return Integer.parseInt(num);
+    }
+
+    public Integer maxNumberRange() {
+        return this.minNumberRange() * 10 - 1;
+    }
+
 }
