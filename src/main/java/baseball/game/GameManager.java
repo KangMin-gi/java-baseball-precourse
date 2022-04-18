@@ -79,7 +79,6 @@ public class GameManager {
 
     private void initDefenderNumber() {
         this.defenderNumbers = this.generateNumbers(defender.writeNumber());
-        System.out.println(this.defenderNumbers.intValue());
     }
 
     private BaseballNumbers generateNumbers(int numbers) {
